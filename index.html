@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<link href='http://fonts.googleapis.com/css?family=Open+Sans&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" type="text/css" href="css/style.css">
+<script type="text/javascript" src="js/jquery-2.1.3.min.js"></script>
+<script type="text/javascript" src="js/underscore-min.js"></script>
+<script type="text/javascript" src="js/backbone.js"></script>
+<title></title>
+</head>
+<body>
+
+<script type="text/template" id="photo-template">
+<div >
+	<section id="photoChoose">
+	<div class="photo-text animation-target">
+		<img src =<%= imgSrc%> >
+		<section class="text" >
+			<h2><%= title%></h2>
+			<p><%= description %></p>			
+		</section>
+	</div>
+			<img src="img/arrowLeft.png" class="arrowLeft">
+			<img src="img/arrowRight.png" class="arrowRight">
+	<button id="create-mode">Back to create mode</button>
+</section>
+</div>
+</script>
+<script type="text/template" id="create">
+	<input type="text" placeholder="title" id="title">
+	<textarea id="description"></textarea> 
+	<input type="text" placeholder="image" id="image">
+	<button id="add-model">Add</button>
+	<button id="preview">Preview</button>
+</script>
+
+<script type="text/javascript" src="js/model/photo.js"></script>
+<script type="text/javascript" src="js/view/photoView.js"></script>
+<script type="text/javascript" src="js/collection/photoes.js"></script>
+<script type="text/javascript" src="js/view/photosView.js"></script>
+<script type="text/javascript" src="js/view/cPhotoView.js"></script>
+<script type="text/javascript" src="js/collection/createPhoto.js"></script>
+<script type="text/javascript" src="js/view/createPhotoView.js"></script>
+<script type="text/javascript" src="js/appfile.js"></script>
+</body>
+</html>
