@@ -1,7 +1,7 @@
 var Photo = Backbone.Model.extend({
 	defaults: {
-		imgSrc: 'img/zdjecie.jpg',
-		description: 'Była to moja pierwsza sensowna wiadomość pod zdjęciem, na którym wyglądasz inaczej niż w rzeczywistości',
+		imgSrc: 'img/github.jpg',
+		description: 'Lorem ipsum dolor amet',
 		title: 'Title',
 		show: true
 	}

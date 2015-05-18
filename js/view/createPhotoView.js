@@ -1,7 +1,10 @@
 var CreatePhotoView = Backbone.View.extend({
 	events: {
-		'click #add-model': 'test',
-		'click #preview': 'preview'
+		'click #add-model': 'addSlide',
+		'click #preview': 'preview',
+		'click #addBold': 'addBold',
+		'click #addCursive': 'addCursive',
+		'click #addUnderline': 'addUnderline'
 	},
 	initialize: function(){
 		this.render();
@@ -13,9 +16,19 @@ var CreatePhotoView = Backbone.View.extend({
 		}, this);
 		return this;
 	},
-	test: function(){
+
+	addBold: function(){
+		document.execCommand('bold',false,null);		
+	},
+	addCursive: function(){
+		document.execCommand('italic',false,null);
+	},
+	addUnderline: function(){
+		document.execCommand('underline',false,null);
+	},
+	addSlide: function(){
 		var newTitle = $('#title').val();
-		var newDescription = $('#description').val();
+		var newDescription = $('#description').html();
 		console.log(newDescription);
 		var newImage = $('#image').val();
 		this.collection.add({
@@ -23,11 +36,21 @@ var CreatePhotoView = Backbone.View.extend({
 			description: newDescription,
 			imgSrc: newImage 
 		});
-		console.log(this.collection);
+		// console.log(this.collection);
 	},
 	preview: function(){
-		this.$el.css('display', 'none');
-		photosView.render();
-		photosView.$el.css('display', 'block');
+		if(!$('#title').val()){
+			$('#title').addClass('animation-validation');
+			$('.fa-exclamation-triangle').css('display', 'inline');
+			setTimeout(function(){
+				$('#title').removeClass('animation-validation');
+				// $('.fa-exclamation-triangle').css('display', 'none');
+			},1000);
+		}
+		else {
+			this.$el.css('display', 'none');
+			photosView.render();
+			photosView.$el.css('display', 'block');
+		}
 	}
 });

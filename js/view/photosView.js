@@ -3,7 +3,8 @@ var PhotosView = Backbone.View.extend({
 	events: {
 		'click .arrowLeft': 'previousModel',
 		'click .arrowRight': 'nextModel',
-		'click #create-mode': 'backToCreate'
+		'click #create-mode': 'backToCreate',
+		'keydown .arrow-nav': 'nextModelKey'
 	},
 	initialize: function() {
 		this.collection.on('change', this.render, this);
@@ -11,6 +12,7 @@ var PhotosView = Backbone.View.extend({
 	},
 	render: function(){
 		// console.log(this.collection.length);
+		
 		var length = this.collection.length - 1;
 		var lastImg = this.collection.at(length).get('imgSrc');
 		var lastTitle = this.collection.at(length).get('title');
@@ -25,11 +27,20 @@ var PhotosView = Backbone.View.extend({
 		console.log(this.collection);
 		var whichPhoto = this.collection.at(0);
 		this.renderModel(whichPhoto);
+		$('.arrow-nav').focus();
 		return this;
 	},
 	renderModel: function(concretePhoto){
 		var concretePhotoView = new PhotoView({model: concretePhoto});
 		this.$el.html(concretePhotoView.render().el);
+	},
+	nextModelKey: function(e){
+		if (e.keyCode === 39) {
+			this.nextModel();
+		}
+		else if(e.keyCode === 37) {
+			this.previousModel();
+		}
 	},
 	nextModel: function(){
 		var length = this.collection.length - 2;
