@@ -4,7 +4,7 @@
   "description": "simple single-page todoApp using backbone.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/kaadash/simplePresentation"
+    "url": "https://github.com/kaadash/simplePresentation.git"
   },
   "devDependencies": {
     "gulp": "^3.8.11",

@@ -4,7 +4,10 @@ var CreatePhotoView = Backbone.View.extend({
 		'click #preview': 'preview',
 		'click #addBold': 'addBold',
 		'click #addCursive': 'addCursive',
-		'click #addUnderline': 'addUnderline'
+		'click #addUnderline': 'addUnderline',
+		// 'keydown #font': 'typeFont'
+		'click #unorderedList': 'addUnorderedList',
+		'click #orderedList': 'addOrderedList'
 	},
 	initialize: function(){
 		this.render();
@@ -26,31 +29,44 @@ var CreatePhotoView = Backbone.View.extend({
 	addUnderline: function(){
 		document.execCommand('underline',false,null);
 	},
-	addSlide: function(){
-		var newTitle = $('#title').val();
-		var newDescription = $('#description').html();
-		console.log(newDescription);
-		var newImage = $('#image').val();
-		this.collection.add({
-			title: newTitle,
-			description: newDescription,
-			imgSrc: newImage 
-		});
-		// console.log(this.collection);
+	addUnorderedList: function(){
+		document.execCommand("InsertOrderedList", false,"newOL");
 	},
-	preview: function(){
+	addOrderedList: function(){
+		document.execCommand("InsertUnorderedList", false,"newUL");
+	},
+	addSlide: function(){
 		if(!$('#title').val()){
 			$('#title').addClass('animation-validation');
-			$('.fa-exclamation-triangle').css('display', 'inline');
+			$('.icon-warning-sign').css('display', 'inline');
 			setTimeout(function(){
 				$('#title').removeClass('animation-validation');
-				// $('.fa-exclamation-triangle').css('display', 'none');
 			},1000);
 		}
 		else {
-			this.$el.css('display', 'none');
-			photosView.render();
-			photosView.$el.css('display', 'block');
+			var newTitle = $('#title').val();
+			var newDescription = $('#description').html();
+			console.log(newDescription);
+			var newImage = $('#image').val();
+			this.collection.add({
+				title: newTitle,
+				description: newDescription,
+				imgSrc: newImage 
+			});			
 		}
+		// console.log(this.collection);
+	},
+	// typeFont: function(e){
+	// 	var size = $('#font').val();
+	// 	$('#description').$el.execCommand('FontSize',false,size);
+	// 	if(e.keyCode===13){
+	// 		console.log(size);
+	// 	}
+	// },
+	preview: function(){
+		this.$el.css('display', 'none');
+		photosView.render();
+		photosView.$el.css('display', 'block');
+		$('.arrow-nav').focus();
 	}
 });

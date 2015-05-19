@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <link rel="stylesheet" href="css/font-awesome.min.css">
+<!-- <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"> -->
 <link href='http://fonts.googleapis.com/css?family=Open+Sans&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" type="text/css" href="css/style.css">
 <script type="text/javascript" src="js/jquery-2.1.3.min.js"></script>
@@ -31,13 +32,16 @@
 </script>
 <script type="text/template" id="create">
 	<input type="text" placeholder="title" id="title">
-	<i class="fa-warning"></i>
-	<button class="pick-style" id="addBold"><b>B</b></button>
-	<button class="pick-style" id="addCursive"><i>I</i></button>
-	<button class="pick-style" id="addUnderline"><u>U</u></button>
+	<i class="icon-warning-sign">Fill title, please :)</i> 
+	<div class="style-nav">
+		<button class="pick-style" id="addBold"><b>B</b></button>
+		<button class="pick-style" id="addCursive"><i>I</i></button>
+		<button class="pick-style" id="addUnderline"><u>U</u></button>
+		<!-- <input type="text" placeholder="Type font" id="font"> -->
+		<button class="pick-style" id="unorderedList"><i class="icon-list-ol"></i></button>
+		<button class="pick-style" id="orderedList"><i class="icon-list-ul"></i></button>
+	</div>
 	<div contentEditable="true" id="description" ></div>
-	<!-- <textarea ></textarea>  -->
-<!-- 	<iframe name="richTextField" id="richTextField" style="border:#000000 1px solid; width:700px; height:300px;"></iframe> -->
 	<p>Paste link to image or pick it from disk</p>
 	<input type="text" placeholder="image" id="image">
 	<button id="add-model" class="myButton">Add</button>
