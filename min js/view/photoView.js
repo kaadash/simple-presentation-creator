@@ -1,1 +1,1 @@
-var PhotoView=Backbone.View.extend({className:"photos",template:_.template($("#photo-template").html()),initialize:function(){this.render()},render:function(){return this.$el.html(this.template(this.model.toJSON())),this.$el.fadeIn(1e3),this}});
+var PhotoView=Backbone.View.extend({className:"photos",template:_.template($("#photo-template").html()),initialize:function(){this.model.on("change",this.render,this),this.render()},render:function(){return this.$el.html(this.template(this.model.toJSON())),this.$el.fadeIn(1e3),this}});

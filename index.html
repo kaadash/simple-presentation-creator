@@ -14,25 +14,28 @@
 <body>
 
 <script type="text/template" id="photo-template">
-<div >
+<div>
 	<section id="photoChoose">
 	<div class="photo-text animation-target">
 		<img src =<%= imgSrc%> >
 		<section class="text" >
-			<h2><%= title%></h2>
-			<p><%= description %></p>			
+			<h2 id="preview-title"><%= title%></h2>
+			<p id="preview-description"><%= description %></p>			
 		</section>
 	</div>
 			<img src="img/arrowLeft.png" class="arrowLeft">
 			<img src="img/arrowRight.png" class="arrowRight">
 	<button id="create-mode" class="myButton">Back to create mode</button>
+	<button id="edit" class="myButton">Edit</button>
+	<button id="save" class="myButton" style="display: none">Save</button>
+
 	<input type="text" class="arrow-nav">
 </section>
 </div>
 </script>
 <script type="text/template" id="create">
 	<input type="text" placeholder="title" id="title">
-	<i class="icon-warning-sign">Fill title, please :)</i> 
+	<i class="icon-warning-sign">  Fill title, please :)</i> 
 	<div class="style-nav">
 		<button class="pick-style" id="addBold"><b>B</b></button>
 		<button class="pick-style" id="addCursive"><i>I</i></button>
@@ -40,12 +43,15 @@
 		<!-- <input type="text" placeholder="Type font" id="font"> -->
 		<button class="pick-style" id="unorderedList"><i class="icon-list-ol"></i></button>
 		<button class="pick-style" id="orderedList"><i class="icon-list-ul"></i></button>
+
 	</div>
 	<div contentEditable="true" id="description" ></div>
 	<p>Paste link to image or pick it from disk</p>
 	<input type="text" placeholder="image" id="image">
 	<button id="add-model" class="myButton">Add</button>
 	<button id="preview" class="myButton">Preview</button>
+
+
 </script>
 
 <script type="text/javascript" src="js/model/photo.js"></script>

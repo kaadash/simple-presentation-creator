@@ -4,7 +4,9 @@ var PhotosView = Backbone.View.extend({
 		'click .arrowLeft': 'previousModel',
 		'click .arrowRight': 'nextModel',
 		'click #create-mode': 'backToCreate',
-		'keydown .arrow-nav': 'nextModelKey'
+		'keydown .arrow-nav': 'nextModelKey',
+		'click #edit': 'fastEdit',
+		'click #save': 'saveEdition'
 	},
 	initialize: function() {
 		this.collection.on('change', this.render, this);
@@ -24,7 +26,7 @@ var PhotosView = Backbone.View.extend({
 			description: lastPar,
 			imgSrc: lastImg
 		});
-		console.log(this.collection);
+		// console.log(this.collection);
 		var whichPhoto = this.collection.at(0);
 		this.renderModel(whichPhoto);
 		$('.arrow-nav').focus();
@@ -73,10 +75,28 @@ var PhotosView = Backbone.View.extend({
 		}
 		
 
-		console.log(position);
+		// console.log(position);
 	},
 	backToCreate: function(){
 		this.$el.css('display', 'none');
 		createPhotoView.$el.css('display', 'block');
+	},
+	fastEdit: function(){
+		this.settingEditable(true);
+	},
+	settingEditable: function(bool){
+		$('#preview-title').attr('contentEditable', bool);
+		$('#preview-description').attr('contentEditable', bool);
+		$('#save').css('display', 'inline');	
+	},
+	saveEdition: function(){
+		var modelToEdit = this.collection.at(window.position);
+		// console.log(modelToEdit);
+		var setTitle = $('#preview-title').html();	
+		var setDescription = $('#preview-description').html();	
+		modelToEdit.set({title: setTitle, description: setDescription});
+		this.collection.at(0).set({title: setTitle, description: setDescription});
+		// this.render();
+		console.log(this.collection);
 	}
 });

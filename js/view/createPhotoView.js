@@ -52,7 +52,8 @@ var CreatePhotoView = Backbone.View.extend({
 				title: newTitle,
 				description: newDescription,
 				imgSrc: newImage 
-			});			
+			});
+						
 		}
 		// console.log(this.collection);
 	},
