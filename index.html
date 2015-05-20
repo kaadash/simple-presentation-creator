@@ -23,12 +23,14 @@
 			<p id="preview-description"><%= description %></p>			
 		</section>
 	</div>
-			<img src="img/arrowLeft.png" class="arrowLeft">
-			<img src="img/arrowRight.png" class="arrowRight">
-	<button id="create-mode" class="myButton">Back to create mode</button>
-	<button id="edit" class="myButton">Edit</button>
-	<button id="save" class="myButton" style="display: none">Save</button>
-
+	<img src="img/arrowLeft.png" class="arrowLeft">
+	<img src="img/arrowRight.png" class="arrowRight">
+	<div class="preview-nav">
+		<button id="create-mode" class="myButton">Back to create mode</button>
+		<button id="edit" class="myButton">Fast Edit</button>
+		<button id="fullEdit" class="myButton">Full Edit</button>
+		<button id="save" class="myButton" style="display: none">Save</button>
+	</div>
 	<input type="text" class="arrow-nav">
 </section>
 </div>
@@ -50,8 +52,7 @@
 	<input type="text" placeholder="image" id="image">
 	<button id="add-model" class="myButton">Add</button>
 	<button id="preview" class="myButton">Preview</button>
-
-
+	<button id="full-save" class="myButton" style="display: none;">Save</button>
 </script>
 
 <script type="text/javascript" src="js/model/photo.js"></script>

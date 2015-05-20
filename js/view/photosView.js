@@ -6,6 +6,7 @@ var PhotosView = Backbone.View.extend({
 		'click #create-mode': 'backToCreate',
 		'keydown .arrow-nav': 'nextModelKey',
 		'click #edit': 'fastEdit',
+		'click #fullEdit': 'fullEdit',
 		'click #save': 'saveEdition'
 	},
 	initialize: function() {
@@ -77,26 +78,61 @@ var PhotosView = Backbone.View.extend({
 
 		// console.log(position);
 	},
+	clearInput: function(){
+		$('#title').val('');
+		$('#description').html('');
+		$('#image').val('');
+	},
 	backToCreate: function(){
 		this.$el.css('display', 'none');
 		createPhotoView.$el.css('display', 'block');
+		this.clearInput();
 	},
 	fastEdit: function(){
 		this.settingEditable(true);
+	},
+	fullEdit: function(){
+		var modelToChange = this.collection.at(window.position);
+		var descriptToChange = modelToChange.get('description');
+		var imageToChange = modelToChange.get('imgSrc');
+		this.settingEditable(true);	
+		createPhotoView.$el.css('display', 'block');
+		this.showCreateMode(false);
+		$('.preview-nav').css('display', 'none');
+		$('#preview-description').css('display', 'none');
+		$('#full-save').css('display', 'inline-block');
+		console.log(descriptToChange);
+		$('#description').html(descriptToChange);
+		$('#image').val(imageToChange);
+	},
+	showCreateMode: function(show){
+		var hide = '';
+		if(show){
+			hide = 'inline-block'
+		}
+		else {
+			hide = 'none';
+		}
+		$('#title').css('display', hide);
+		$('#add-model').css('display', hide);
+		$('#preview').css('display', hide);
 	},
 	settingEditable: function(bool){
 		$('#preview-title').attr('contentEditable', bool);
 		$('#preview-description').attr('contentEditable', bool);
 		$('#save').css('display', 'inline');	
+		$('#preview-title').focus();		
 	},
 	saveEdition: function(){
-		var modelToEdit = this.collection.at(window.position);
-		// console.log(modelToEdit);
-		var setTitle = $('#preview-title').html();	
-		var setDescription = $('#preview-description').html();	
-		modelToEdit.set({title: setTitle, description: setDescription});
-		this.collection.at(0).set({title: setTitle, description: setDescription});
-		// this.render();
-		console.log(this.collection);
+	
+			var modelToEdit = this.collection.at(window.position);
+			var setTitle = $('#preview-title').html();	
+			var setDescription = $('#preview-description').html();	
+			modelToEdit.set({title: setTitle, description: setDescription});
+			this.collection.at(0).set({title: setTitle, description: setDescription});
+		if(window.position === 0){
+			var length = this.collection.length - 1;
+			this.collection.at(length).set({title: setTitle, description: setDescription});
+		}
 	}
 });
