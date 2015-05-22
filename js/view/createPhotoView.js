@@ -68,21 +68,30 @@ var CreatePhotoView = Backbone.View.extend({
 	fullSave: function(){
 		var modelToSave = photos.at(window.position);
 		var titleToSave = $('#preview-title').html();
-		console.log(titleToSave);
 		var descriptToSave = $('#description').html();
+		console.log(descriptToSave);
 		var imgToSave = $('#image').val();
 		modelToSave.set({
 			title: titleToSave,
 			description: descriptToSave,
 			imgSrc: imgToSave
 		});
-		photos.at(0).set({title: titleToSave, description: descriptToSave, imgSrc: imgToSave});
+		if(photos.at(0).get('show')){
+			photos.at(0).set({title: titleToSave, description: descriptToSave, imgSrc: imgToSave, show: false});
+		}
+		else {
+			photos.at(0).set({title: titleToSave, description: descriptToSave, imgSrc: imgToSave, show: true});
+		}
+		// photosView.render();
 		if(window.position === 0){
 			var length = photos.length - 1;
 			photos.at(length).set({title: titleToSave, description: descriptToSave, imgSrc: imgToSave});
+
 		}
 		photosView.showCreateMode(true);
 		this.$el.css('display', 'none');
+		$('.preview-nav').css('display', 'block');
+
 	},
 	preview: function(){
 		this.$el.css('display', 'none');

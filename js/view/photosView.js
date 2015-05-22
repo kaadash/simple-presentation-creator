@@ -86,7 +86,9 @@ var PhotosView = Backbone.View.extend({
 	backToCreate: function(){
 		this.$el.css('display', 'none');
 		createPhotoView.$el.css('display', 'block');
+		$('#full-save').css('display', 'none');
 		this.clearInput();
+
 	},
 	fastEdit: function(){
 		this.settingEditable(true);
